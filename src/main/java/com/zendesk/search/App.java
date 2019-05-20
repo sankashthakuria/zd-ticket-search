@@ -1,3 +1,5 @@
+package com.zendesk.search;
+
 import com.zendesk.search.console.Menu;
 
 /**

@@ -14,10 +14,7 @@ import com.zendesk.search.service.ZdOrganizationSearch;
 import com.zendesk.search.service.ZdTicketSearch;
 import com.zendesk.search.service.ZdUserSearch;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -73,14 +70,39 @@ public class Menu {
                             "2: Users\n" +
                             "3: Tickets"
             );
-            int entityToSearch = scn.nextInt();
-            Map<String, Class> stringClassMap = mainSelection.get(entityToSearch);
+            String first = scn.next();
+            Integer num;
+            try {
+                num = Integer.parseInt(first);
+                if (!(1 <= num && num <= 3)){
+                    throw new IllegalArgumentException();
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid choice -  resuming from beginning");
+                continue;
+            }
+
+            int entityToSearch = num;
+            Map<String, Class> stringClassMap;
+            if (mainSelection.containsKey(entityToSearch)) {
+                stringClassMap = mainSelection.get(entityToSearch);
+            } else {
+                System.out.println("Invalid selection - resuming search from beginning");
+                continue;
+            }
             Class clazz = (Class) stringClassMap.values().toArray()[0];
             String firstMenuChoice = stringClassMap.keySet().iterator().next();
             System.out.println("Displaying fields for your selection.....");
             System.out.println(showSearchableFieldsToUser(clazz));
             System.out.println("Enter the field name.....");
-            Integer fieldIndex = scn.nextInt();
+            Integer fieldIndex;
+            try {
+                fieldIndex = scn.nextInt();
+            } catch (InputMismatchException e){
+                System.out.println("Invalid choice: Resuming from the beginning.....");
+                continue;
+            }
+
             String fieldName;
             if (lookupTable.containsKey(fieldIndex)) {
                 fieldName = lookupTable.get(fieldIndex);
