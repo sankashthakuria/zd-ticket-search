@@ -9,10 +9,7 @@ import com.zendesk.search.model.data.Organization;
 import com.zendesk.search.model.data.Ticket;
 import com.zendesk.search.model.data.User;
 import com.zendesk.search.model.results.ZdSearchResults;
-import com.zendesk.search.service.Search;
-import com.zendesk.search.service.ZdOrganizationSearch;
-import com.zendesk.search.service.ZdTicketSearch;
-import com.zendesk.search.service.ZdUserSearch;
+import com.zendesk.search.service.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -83,7 +80,6 @@ public class Menu {
                     stringClassMap = mainSelection.get(entityToSearch);
                 } else throw new IllegalArgumentException();
                 Class clazz = (Class) stringClassMap.values().toArray()[0];
-                String firstMenuChoice = stringClassMap.keySet().iterator().next();
                 System.out.println("Displaying fields for your selection.....");
                 System.out.println(showSearchableFieldsToUser(clazz));
                 System.out.println("Enter the field name.....");
@@ -98,19 +94,12 @@ public class Menu {
                 }
                 System.out.println("Enter the field value.....");
                 String fieldValue = scn.next();
-                switch (firstMenuChoice) {
-                    case "organization": {
-                        performSearch(ZdOrganizationSearch.class, fieldName, fieldValue);
-                        break;
-                    }
-                    case "user": {
-                        performSearch(ZdUserSearch.class, fieldName, fieldValue);
-                        break;
-                    }
-                    case "ticket": {
-                        performSearch(ZdTicketSearch.class, fieldName, fieldValue);
-                    }
-                }
+
+                Injector injector = Guice.createInjector(new AppModule());
+                Search searchImpl = injector.getInstance(SearchFactory.class).getSearchImpl(entityToSearch);
+                ZdSearchResults search = searchImpl.search(fieldName, fieldValue);
+                Display display = injector.getInstance(DisplayFactory.class).getDisplayImpl(entityToSearch);
+                display.show(search);
                 System.out.println("Enter (Y/y) to perform another search - Press any other character to quit.....");
                 boolean continueSearch = scn.next().equalsIgnoreCase("Y");
                 if (!continueSearch) break;
@@ -120,21 +109,5 @@ public class Menu {
             }
         }
         scn.close();
-    }
-
-    /**
-     * Delegates call to the appropriate search object - organization, user or ticket
-     *
-     * @param clazz      the class entity that is being searched for
-     * @param fieldName  the name of the field being searched
-     * @param fieldValue the value of the field being searched
-     */
-    private static void performSearch(Class clazz, String fieldName, String fieldValue) {
-        Search instance;
-        Injector injector = Guice.createInjector(new AppModule());
-        instance = (Search) injector.getInstance(clazz);
-        ZdSearchResults search = instance.search(fieldName, fieldValue);
-        DisplayOrganizationResults instance1 = injector.getInstance(DisplayOrganizationResults.class);
-        instance1.show(search);
     }
 }
