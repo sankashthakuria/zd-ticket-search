@@ -42,6 +42,9 @@ The project can also be run from Intellij Idea. To do so, import as maven projec
 
 ## Example
 ![](zdesk.gif)
+
+## Note
+Running with Java 9 throws up a few warnings which are due to Google Guice. These are safe to ignore.
 ## Tech
 
 Some of the libraries that this project uses are the following:

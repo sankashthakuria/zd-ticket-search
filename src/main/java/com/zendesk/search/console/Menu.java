@@ -65,69 +65,59 @@ public class Menu {
         System.out.println(ZENDESK_BANNER);
         Scanner scn = new Scanner(System.in);
         while (true) {
-            System.out.println(
-                    "What would you like to search?.....\n1: Organizations\n" +
-                            "2: Users\n" +
-                            "3: Tickets"
-            );
-            String first = scn.next();
-            Integer num;
             try {
+                System.out.println(
+                        "What would you like to search?.....\n1: Organizations\n" +
+                                "2: Users\n" +
+                                "3: Tickets"
+                );
+                String first = scn.next();
+                Integer num;
                 num = Integer.parseInt(first);
-                if (!(1 <= num && num <= 3)){
+                if (!(1 <= num && num <= 3)) {
                     throw new IllegalArgumentException();
                 }
-            } catch (IllegalArgumentException e) {
+                int entityToSearch = num;
+                Map<String, Class> stringClassMap;
+                if (mainSelection.containsKey(entityToSearch)) {
+                    stringClassMap = mainSelection.get(entityToSearch);
+                } else throw new IllegalArgumentException();
+                Class clazz = (Class) stringClassMap.values().toArray()[0];
+                String firstMenuChoice = stringClassMap.keySet().iterator().next();
+                System.out.println("Displaying fields for your selection.....");
+                System.out.println(showSearchableFieldsToUser(clazz));
+                System.out.println("Enter the field name.....");
+                Integer fieldIndex;
+                fieldIndex = scn.nextInt();
+                String fieldName;
+                if (lookupTable.containsKey(fieldIndex)) {
+                    fieldName = lookupTable.get(fieldIndex);
+                } else {
+                    System.out.println("Invalid choice: Resuming from the beginning.....");
+                    continue;
+                }
+                System.out.println("Enter the field value.....");
+                String fieldValue = scn.next();
+                switch (firstMenuChoice) {
+                    case "organization": {
+                        performSearch(ZdOrganizationSearch.class, fieldName, fieldValue);
+                        break;
+                    }
+                    case "user": {
+                        performSearch(ZdUserSearch.class, fieldName, fieldValue);
+                        break;
+                    }
+                    case "ticket": {
+                        performSearch(ZdTicketSearch.class, fieldName, fieldValue);
+                    }
+                }
+                System.out.println("Enter (Y/y) to perform another search - Press any other character to quit.....");
+                boolean continueSearch = scn.next().equalsIgnoreCase("Y");
+                if (!continueSearch) break;
+            } catch (InputMismatchException | IllegalArgumentException e) {
                 System.out.println("Invalid choice -  resuming from beginning");
                 continue;
             }
-
-            int entityToSearch = num;
-            Map<String, Class> stringClassMap;
-            if (mainSelection.containsKey(entityToSearch)) {
-                stringClassMap = mainSelection.get(entityToSearch);
-            } else {
-                System.out.println("Invalid selection - resuming search from beginning");
-                continue;
-            }
-            Class clazz = (Class) stringClassMap.values().toArray()[0];
-            String firstMenuChoice = stringClassMap.keySet().iterator().next();
-            System.out.println("Displaying fields for your selection.....");
-            System.out.println(showSearchableFieldsToUser(clazz));
-            System.out.println("Enter the field name.....");
-            Integer fieldIndex;
-            try {
-                fieldIndex = scn.nextInt();
-            } catch (InputMismatchException e){
-                System.out.println("Invalid choice: Resuming from the beginning.....");
-                continue;
-            }
-
-            String fieldName;
-            if (lookupTable.containsKey(fieldIndex)) {
-                fieldName = lookupTable.get(fieldIndex);
-            } else {
-                System.out.println("Invalid choice: Resuming from the beginning.....");
-                continue;
-            }
-            System.out.println("Enter the field value.....");
-            String fieldValue = scn.next();
-            switch (firstMenuChoice) {
-                case "organization": {
-                    performSearch(ZdOrganizationSearch.class, fieldName, fieldValue);
-                    break;
-                }
-                case "user": {
-                    performSearch(ZdUserSearch.class, fieldName, fieldValue);
-                    break;
-                }
-                case "ticket": {
-                    performSearch(ZdTicketSearch.class, fieldName, fieldValue);
-                }
-            }
-            System.out.println("Enter (Y/y) to perform another search - Press any other character to quit.....");
-            boolean continueSearch = scn.next().equalsIgnoreCase("Y");
-            if (!continueSearch) break;
         }
         scn.close();
     }
