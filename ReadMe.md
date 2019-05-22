@@ -160,9 +160,9 @@ Tickets submitted
 Some of the libraries that this project uses are the following:
 
 * [Google Guice](https://github.com/google/guice) - Dependency Injection Framework
-* [Junit 5](https://junit.org/junit5/) - Tesing framework
-* [Mockito](https://site.mockito.org/) - Tesing Framework
-* [PowerMock](https://github.com/powermock/powermock) -Tesing Framework
+* [Junit 5](https://junit.org/junit5/) - Testing framework
+* [Mockito](https://site.mockito.org/) - Testing Framework
+* [PowerMock](https://github.com/powermock/powermock) -Testing Framework
 * [Jackson](https://github.com/FasterXML/jackson) - JSON Parsing library
 * [Project Lombok](https://projectlombok.org/) - Fantastic library that takes away a lot of boiler plate
 

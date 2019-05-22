@@ -67,9 +67,11 @@ public class Menu {
     while (true) {
       try {
         System.out.println(
-            "What would you like to search?.....\n1: Organizations\n"
+            "What would you like to search?\n"
+                + "1: Organizations\n"
                 + "2: Users\n"
-                + "3: Tickets");
+                + "3: Tickets\n"
+                + "Please enter 1/2/3 for your choice.....");
         String first = scn.next();
         Integer num;
         num = Integer.parseInt(first);
@@ -84,7 +86,7 @@ public class Menu {
         Class clazz = (Class) stringClassMap.values().toArray()[0];
         System.out.println("Displaying fields for your selection.....");
         System.out.println(showSearchableFieldsToUser(clazz));
-        System.out.println("Enter the field name.....");
+        System.out.println("Select a field to search. Please enter a number that appears against your choice.....");
         Integer fieldIndex;
         fieldIndex = scn.nextInt();
         String fieldName;
