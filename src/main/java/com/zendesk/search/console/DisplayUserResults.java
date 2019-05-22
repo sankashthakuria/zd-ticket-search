@@ -28,7 +28,7 @@ public class DisplayUserResults extends Display<ZdSearchResults> {
               } catch (IllegalAccessException e) {
                 e.printStackTrace();
               }
-              System.out.println(String.format("%s\n", "Tickets Assigned"));
+              System.out.println(String.format("\n%s", "Tickets Assigned"));
               p.getTicketsAssigned().stream()
                   .forEach(
                       n ->
@@ -36,7 +36,7 @@ public class DisplayUserResults extends Display<ZdSearchResults> {
                               String.format(
                                   "\tAssigned Tickets: Ticket Id: %s, Ticket Subject: %s",
                                   n.getId(), n.getSubject())));
-              System.out.println(String.format("%s\n", "Tickets submitted"));
+              System.out.println(String.format("\n%s", "Tickets submitted"));
               p.getTicketsSubmitted().stream()
                   .forEach(
                       x ->
