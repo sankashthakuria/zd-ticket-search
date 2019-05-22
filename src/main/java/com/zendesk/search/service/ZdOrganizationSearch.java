@@ -9,6 +9,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -54,6 +55,7 @@ public class ZdOrganizationSearch implements Search {
                   }
                   return Pair.of(o, p.getRight());
                 })
+            .filter(car -> Objects.nonNull(car.getLeft()))
             .filter(
                 x -> {
                   if (x.getLeft() instanceof ArrayList) {
