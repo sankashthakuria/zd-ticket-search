@@ -34,7 +34,7 @@ public class DisplayOrganizationResults extends Display<ZdSearchResults> {
                       x ->
                           System.out.println(
                               String.format(
-                                  "\tName: %-35.35s\t\t|\tEmail: %s, Phone: %s",
+                                  "\tName: %-20.20s\t|\tEmail: %-25.25s\t|\tPhone: %-20.20s",
                                   zdDatabase.getUserIndex().get(x).getName(),
                                   zdDatabase.getUserIndex().get(x).getEmail(),
                                   zdDatabase.getUserIndex().get(x).getPhone())));
