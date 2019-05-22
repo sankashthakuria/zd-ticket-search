@@ -57,4 +57,9 @@ class ZdTicketSearchTest {
   void search_results_for_non_existing_field_name_should_return_exception() {
     assertThrows(NullPointerException.class, () -> ticketSearch.search("test", "0"));
   }
+
+  @Test
+  void search_results_for_empty_field() {
+    assertEquals(1, ticketSearch.search("description", "").getTicketSearchResult().size());
+  }
 }

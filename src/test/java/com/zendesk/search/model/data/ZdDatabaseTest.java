@@ -56,7 +56,7 @@ class ZdDatabaseTest {
   void getTicketsTest() {
     List<Ticket> tickets = zdDatabase.getTickets();
     assertNotNull(tickets);
-    assertEquals(200, tickets.size());
+    assertEquals(201, tickets.size());
     assertEquals("436bf9b0-1147-4c0a-8439-6f79833bff5b", tickets.get(0).getId());
     assertEquals("A Catastrophe in Korea (North)", tickets.get(0).getSubject());
   }
@@ -97,8 +97,8 @@ class ZdDatabaseTest {
   void getTicketIndex() {
     Map<String, Ticket> ticketIndex = zdDatabase.getTicketIndex();
     assertNotNull(ticketIndex);
-    assertEquals(true, ticketIndex.containsKey("daf8d797-3d09-4c93-9f3b-a642b63ded99"));
-    assertEquals(200, ticketIndex.size());
+    assertEquals(true, ticketIndex.containsKey("59d803f6-a9cd-448c-a6bd-91ce9f044305"));
+    assertEquals(201, ticketIndex.size());
   }
 
   @Test
