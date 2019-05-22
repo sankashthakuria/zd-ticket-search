@@ -38,8 +38,6 @@ import java.util.List;
 @Data
 public class User {
 
-  private static final long serialVersionUID = 3531563685459955226L;
-
   @JsonProperty("_id")
   private String id;
 
