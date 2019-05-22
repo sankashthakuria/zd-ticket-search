@@ -34,7 +34,7 @@ The project can also be run from Intellij Idea. To do so, import as maven projec
 ## Search 
 
 * Strings are matched in a case-insensitive fashion
-* To search for array elements in json such just pass the name of the field. If the array contains that field, match will occur
+* To search for array elements in json, just pass the name of the field. If the array contains that field, match will occur
 * Timestamps are matched as strings
 * The user is shown a list of choices in via a menu when the application is launched. Every field name maps to an number. This number has to be typed in to perform the match. See a sample execution in the [Demonstration](#Demonstration) section
 
