@@ -48,6 +48,7 @@ Below is sample execution of the program
 ## Sample results
 
 ###Organization
+
 ```shell
 -----------------------------------Displaying Search Results-------------------------------------------
 
