@@ -49,6 +49,7 @@ Below is sample execution of the program
 
 ###Organization
 
+
 ```shell
 -----------------------------------Displaying Search Results-------------------------------------------
 
@@ -67,11 +68,11 @@ tags                     |       [Fisher, Forbes, Koch, Lester]
 
         Users
 
-        Name: Josefa Mcfadden                                   |       Email: caseymcfadden@flotonic.com, Phone: 8715-273-472
-        Name: Rosa Wright                                       |       Email: joneswright@flotonic.com, Phone: 8034-232-199
-        Name: Morris Ayers                                      |       Email: tonyaayers@flotonic.com, Phone: 9355-543-308
-        Name: Boone Cooke                                       |       Email: rhodescooke@flotonic.com, Phone: 8955-022-065
-        Name: Deanna Terry                                      |       Email: lyndaterry@flotonic.com, Phone: 9924-522-038
+        Name: Josefa Mcfadden           |       Email: caseymcfadden@flotonic.co        |       Phone: 8715-273-472
+        Name: Rosa Wright               |       Email: joneswright@flotonic.com         |       Phone: 8034-232-199
+        Name: Morris Ayers              |       Email: tonyaayers@flotonic.com          |       Phone: 9355-543-308
+        Name: Boone Cooke               |       Email: rhodescooke@flotonic.com         |       Phone: 8955-022-065
+        Name: Deanna Terry              |       Email: lyndaterry@flotonic.com          |       Phone: 9924-522-038
 
                 Tickets
 
@@ -90,7 +91,6 @@ tags                     |       [Fisher, Forbes, Koch, Lester]
 
 ----------------------------------------------------------------------------------------------------
 
------------------------------------End of Results------------------------------------------------------
 
 ```
 
@@ -102,7 +102,6 @@ tags                     |       [Fisher, Forbes, Koch, Lester]
 ----------------------------------------------------------------------------------------------------
 User
 
-serialVersionUID         |       3531563685459955226
 id                       |       37
 url                      |       http://initech.zendesk.com/api/v2/users/37.json
 externalId               |       bfd8811a-706b-4a18-9708-c14a87b9bb1e
@@ -161,7 +160,10 @@ Tickets submitted
 Some of the libraries that this project uses are the following:
 
 * [Google Guice](https://github.com/google/guice) - Dependency Injection Framework
-* [Junit 5](https://junit.org/junit5/) - Testing framework
+* [Google Guava](https://github.com/google/guava) - Collection libraries from Google
+* [Apache Commons Lang](https://commons.apache.org/proper/commons-lang/) - Utility classes from Apache
+* [Mockito](https://site.mockito.org/) - Mocking Framework for testing
+* [Junit 5](https://junit.org/junit5/) - Testing Framework
 * [Mockito](https://site.mockito.org/) - Testing Framework
 * [PowerMock](https://github.com/powermock/powermock) -Testing Framework
 * [Jackson](https://github.com/FasterXML/jackson) - JSON Parsing library
