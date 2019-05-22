@@ -27,6 +27,9 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
                 <configuration>
+                    <commandlineArgs>
+                        --illegal-access=permit
+                    </commandlineArgs>
                     <mainClass>com.zendesk.search.App</mainClass>
                 </configuration>
             </plugin>
